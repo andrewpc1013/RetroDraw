@@ -37,13 +37,16 @@ const ActionPanel = (props) => {
         - passes the new cell list to setCellList
     */}
       <button
-      onClick={() => {
-        const newCellList = buildCellList();
-        newCellList.map((cell, idx) => {
-          cell.color = activeColor
-          setCellList(newCellList)
-        }) 
-      }}>fill all</button>
+        onClick={() => {
+          const newCellList = buildCellList();
+          newCellList.map((cell, idx) => {
+            cell.color = activeColor;
+            setCellList(newCellList);
+          });
+        }}
+      >
+        fill all
+      </button>
       {/* 
       This button needs an onClick function which:
         - creates a new cell list using buildCellList
@@ -52,18 +55,39 @@ const ActionPanel = (props) => {
           - set the corresponding (by index) new cell to the activeColor
     */}
       <button
-      onClick={() => {
-        const newCellList = buildCellList();
-        cellList.map((cell, idx) => {
-          if (cell.color) {
-            newCellList[idx].color = cell.color;
-          } else {
-            newCellList[idx].color = activeColor;
+        onClick={() => {
+          const newCellList = buildCellList();
+          cellList.map((cell, idx) => {
+            if (cell.color) {
+              newCellList[idx].color = cell.color;
+            } else {
+              newCellList[idx].color = activeColor;
+            }
+          });
+          setCellList(newCellList);
+        }}
+      >
+        fill empty
+      </button>
+
+      <button
+        onClick={() => {
+          
+          const newCellList = [...cellList];
+          let currentIndex = newCellList.length, randomIndex
+          while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex)
+            currentIndex--
+
+            [newCellList[currentIndex], newCellList[randomIndex]] = [
+              newCellList[randomIndex], newCellList[currentIndex]];
           }
-        })
-        setCellList(newCellList);
-      }}
-      >fill empty</button>
+        
+          setCellList(newCellList)
+          }}
+      >
+        Shuffle All
+      </button>
     </div>
   );
 };
