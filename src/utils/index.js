@@ -10,7 +10,8 @@ export const COLORS = [
   'blue',
   'purple',
   'white',
-  'black'
+  'black',
+  'brown'
 ];
 
 /**
