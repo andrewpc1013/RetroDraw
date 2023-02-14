@@ -30,7 +30,9 @@ const Palette = (props) => {
     {
       COLORS.map((color, idx)=> {
         return (
-          
+          <Cell key={`palette: ${idx}`} color={color} isActive={activeColor===color} handleClick={() => {
+            setActiveColor(color)
+          }}/>
         )
       })
     }
