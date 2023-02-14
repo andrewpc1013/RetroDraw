@@ -14,6 +14,7 @@ const ActionPanel = (props) => {
   const activeColor = props.activeColor;
   const cellList = props.cellList;
   const setCellList = props.setCellList;
+
   return (
     <div className="action-panel">
       {/* 
@@ -44,13 +45,25 @@ const ActionPanel = (props) => {
         }) 
       }}>fill all</button>
       {/* 
-      This buttonm needs an onClick function which:
+      This button needs an onClick function which:
         - creates a new cell list using buildCellList
         - loops over the original cellList, and for each cell in it:
           - set the corresponding (by index) new cell to its color (if it has one) OR
           - set the corresponding (by index) new cell to the activeColor
     */}
-      <button>fill empty</button>
+      <button
+      onClick={() => {
+        const newCellList = buildCellList();
+        cellList.map((cell, idx) => {
+          if (cell.color) {
+            newCellList[idx].color = cell.color;
+          } else {
+            newCellList[idx].color = activeColor;
+          }
+        })
+        setCellList(newCellList);
+      }}
+      >fill empty</button>
     </div>
   );
 };
